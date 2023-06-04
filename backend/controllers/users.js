@@ -87,6 +87,7 @@ export const addRemoveFriend = async (req, res) => {
 };
 
 
+
 export const searchUsers = async (req, res) => {
   try {
     const { firstName, lastName } = req.query;
