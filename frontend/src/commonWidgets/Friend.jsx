@@ -1,5 +1,4 @@
 import React from "react";
-import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +17,6 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 
   const { palette } = useTheme();
   const primaryLight = palette.primary.light;
-  const primaryDark = palette.primary.dark;
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
 

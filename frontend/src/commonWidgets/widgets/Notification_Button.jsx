@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { IconButton, Badge, Modal } from "@mui/material";
 import { Notifications as NotificationsIcon } from "@mui/icons-material";
 import WidgetWrapper from "commonWidgets/Widget_wrapper";
-function NotificationButton() {
+
+const NotificationButton = ()=> {
     const [open, setOpen] = useState(false);
     const [hasSeenNotifications, setHasSeenNotifications] = useState(
       localStorage.getItem("hasSeenNotifications") === "false"
@@ -39,9 +40,8 @@ function NotificationButton() {
               height: "100%"
             }}
           >
-            <p>Привет. Это мой личный Fullstack проект, который я хочу презентовать вам.</p>
-            <p>Многие функции находятся ещё в разработке, но надеюсь уже существующий функционал вам понравился :)</p>
-            <p>За любыми предложениями обращайтесь в тг @harmonyhusher</p>
+            <p>Welcome to YeneHub </p>
+            <p> Enjoy and increase your connection using YeneHub.</p>
           </div>
           </WidgetWrapper>
         </Modal>

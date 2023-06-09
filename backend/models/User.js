@@ -20,11 +20,17 @@ const UserSchema = new mongoose.Schema(
       max: 50,
       unique: true,
     },
-    password: {
-      type: String,
-      required: true,
-      min: 5,
-    },
+    password:{
+      type:String,
+      required:true,
+      trim:true,
+      validate:{
+          validator:(value)=>{
+             return value.length >8;
+          },
+          message:"the length of password must be greater than 8 characters"
+      },
+  },
     picturePath: {
       type: String,
       default: "",

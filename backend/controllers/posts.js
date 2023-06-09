@@ -110,12 +110,11 @@ export const commentPost = async (req, res) => {
     const { id } = req.params;
     const { text, firstName, lastName, picturePath, userId } = req.body;
     const post = await Post.findById(id);
-    const comment = { userId, text, firstName, lastName, picturePath }; // include firstName and picturePath here
-    post.comments.push(comment);
+    const comment = { userId, text, firstName, lastName, picturePath };
     const updatedPost = await Post.findByIdAndUpdate(
       id,
       { comments: post.comments },
-      { new: true } // pass options object as a single argument
+      { new: true } 
     );
     res.status(200).json(updatedPost);
   } catch (err) {

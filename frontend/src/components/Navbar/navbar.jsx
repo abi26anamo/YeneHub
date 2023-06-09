@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import FlexBetween from "commonWidgets/FlexBetween";
 import { setUsers } from "state/state.jsx";
 import UserImage from "commonWidgets/UserImage";
+import NotificationButton from "commonWidgets/widgets/Notification_Button";
 
 const Navbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
@@ -174,7 +175,7 @@ const Navbar = () => {
             )}
           </IconButton>
           <Message sx={{ fontSize: "25px" }} />
-          <Notifications sx={{ fontSize: "25px" }} />
+          <NotificationButton sx={{ fontSize: "25px" }} />
           <Help sx={{ fontSize: "25px" }} />
           <FormControl variant="standard" value={fullName}>
             <Select
@@ -249,9 +250,7 @@ const Navbar = () => {
             <IconButton>
               <Message sx={{ fontSize: "25px" }} />
             </IconButton>
-            <IconButton>
-              <Notifications sx={{ fontSize: "25px" }} />
-            </IconButton>
+            <NotificationButton sx={{ fontSize: "25px" }} />
             <IconButton>
               <Help sx={{ fontSize: "25px" }} />
             </IconButton>
