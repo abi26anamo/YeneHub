@@ -53,9 +53,9 @@ app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
-
 const PORT = 3001
 const MONGO_URL = "mongodb+srv://abinet:1234@cluster0.f16ksdi.mongodb.net/?retryWrites=true&w=majority"
+
 mongoose.connect(MONGO_URL, {
   useNewUrlParser: true, 
   useUnifiedTopology: true
