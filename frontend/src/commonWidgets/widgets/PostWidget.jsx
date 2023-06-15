@@ -73,6 +73,7 @@ const PostWidget = ({
   
       if (response.ok) {
         console.log('Post deleted successfully');
+        // Perform any additional actions after successful deletion, such as updating the UI or refreshing the post list
       } else {
         console.log('Failed to delete the post');
       }
@@ -80,6 +81,8 @@ const PostWidget = ({
       console.log('Error deleting the post', error.message);
     }
   };
+  
+
   const isUserPost = loggedInUserId === postUserId;
   
   return (

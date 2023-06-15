@@ -91,14 +91,17 @@ export const addRemoveFriend = async (req, res) => {
 export const searchUsers = async (req, res) => {
   try {
     const { firstName, lastName } = req.query;
-    const users = await User.find({ 
+
+    const users = await User.find({
       $or: [
-        { firstName: new RegExp(firstName, 'i') },
-        { lastName: new RegExp(lastName, 'i') },
+        { firstName: { $regex: new RegExp(firstName, "i") } },
+        { lastName: { $regex: new RegExp(lastName, "i") } },
       ],
     });
+
     res.status(200).json(users);
   } catch (error) {
-    res.status(404).json({ message: error.message });
+    res.status(500).json({ message: "Server Error" });
   }
 };
+
