@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -12,8 +12,10 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const { _id } = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
   const friends = useSelector((state) => state.user?.friends || []);
-  const user = useSelector((state)=>state.user);
-  const URL = useSelector((state)=>state.URL);
+  const user = useSelector((state) => state.user);
+  const URL = useSelector((state) => state.URL);
+
+  const [uniqueIdentifier, setUniqueIdentifier] = useState(null); // Store the unique identifier in state
 
   const { palette } = useTheme();
   const primaryLight = palette.primary.light;
@@ -24,7 +26,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 
   const patchFriend = async () => {
     try {
-      const response = await fetch(`${URL}users/${_id}/${friendId}`, {
+      const response = await fetch(`${URL}/users/${_id}/${friendId}`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -36,15 +38,17 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
       }
       const data = await response.json();
       dispatch(setFriends({ friends: data }));
+
+      // Update the unique identifier to trigger a re-render
+      setUniqueIdentifier(Date.now());
     } catch (error) {
       console.error(error);
       // Handle error state or display an error message to the user
     }
   };
-  
 
   return (
-    <FlexBetween>
+    <FlexBetween key={uniqueIdentifier}> {/* Use the unique identifier as the key */}
       <FlexBetween gap="1rem">
         <UserImage image={userPicturePath} size="55px" />
         <Box
@@ -76,30 +80,18 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
         <></>
       ) : (
         <IconButton
-          onClick={() => patchFriend()}
+          onClick={patchFriend}
           sx={{ backgroundColor: primaryLight, p: "0.6rem" }}
         >
-          {isFriend ? (
-            <Button
+          <Button
             sx={{
               color: palette.background.alt,
               backgroundColor: palette.primary.main,
               borderRadius: "3rem",
             }}
-            >
-              <Typography>unfollow</Typography>
-            </Button>
-          ) : (
-            <Button 
-            sx={{
-              color: palette.background.alt,
-              backgroundColor: palette.primary.main,
-              borderRadius: "3rem",
-            }}
-            >
-              <Typography>follow</Typography>
-            </Button>
-          )}
+          >
+            <Typography>{isFriend ? "Unfollow" : "Follow"}</Typography>
+          </Button>
         </IconButton>
       )}
     </FlexBetween>

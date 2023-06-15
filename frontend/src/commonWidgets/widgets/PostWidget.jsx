@@ -37,10 +37,11 @@ const PostWidget = ({
   const { palette } = useTheme();
   const main = palette.neutral.main;
   const primary = palette.primary.main;
+  const URL = useSelector((state)=>state.URL);
 
   const patchLike = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
+      const response = await fetch(`${URL}/posts/${postId}/like`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -62,7 +63,7 @@ const PostWidget = ({
 
   const deletePost = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/posts/${postId}`, {
+      const response = await fetch(`${URL}/posts/${postId}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -99,7 +100,7 @@ const PostWidget = ({
           height="auto"
           alt="post"
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-          src={`http://localhost:3001/assets/${picturePath}`}
+          src={`${URL}/assets/${picturePath}`}
         />
       )}
       <FlexBetween mt="0.25rem">

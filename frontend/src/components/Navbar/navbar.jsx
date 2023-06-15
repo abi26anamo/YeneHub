@@ -35,6 +35,8 @@ const Navbar = () => {
   const background = theme.palette.background.default;
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
+  const URL =  useSelector((state)=>state.URL);
+ 
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -65,7 +67,7 @@ const Navbar = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    let searchUrl = `http://localhost:3001/users/search?firstName=${firstName}&lastName=${lastName}`;
+    let searchUrl = `${URL}/users/search?firstName=${firstName}&lastName=${lastName}`;
     let response = await fetch(searchUrl, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
@@ -79,7 +81,7 @@ const Navbar = () => {
 
     // If the data is empty and the last name is provided, perform another request with only the last name
     if (data.length === 0 && lastName !== "") {
-      searchUrl = `http://localhost:3001/users/search?firstName=${lastName}&lastName=`;
+      searchUrl = `${URL}/users/search?firstName=${lastName}&lastName=`;
       response = await fetch(searchUrl, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
