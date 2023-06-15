@@ -14,14 +14,14 @@ import postRoutes from "./routes/posts.js";
 import { register } from "./controllers/auth.js";
 import { createPost } from "./controllers/posts.js";
 import { verifyToken } from "./middleware/auth.js";
-import User from "./models/User.js";
-import Post from "./models/Post.js";
-import { users, posts } from "./data/index.js";
+
 
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config();
+
+
 const app = express();
 app.use(express.json());
 app.use(helmet());
@@ -53,11 +53,11 @@ app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
-const PORT = 3001
-const MONGO_URL = "mongodb+srv://abinet:1234@cluster0.f16ksdi.mongodb.net/test?retryWrites=true&w=majority"
+console.log(dotenv.config())
+const PORT = process.env.PORT;
 
-mongoose.connect(MONGO_URL, {
-  useNewUrlParser: true, 
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
   useUnifiedTopology: true
 })
   .then(() => {
@@ -68,11 +68,7 @@ mongoose.connect(MONGO_URL, {
   });
 
 
-
-app.listen(PORT,()=>{
-    console.log(`connected at port ${PORT}`)
-    // User.insertMany(users);
-    // Post.insertMany(posts);
-
+app.listen(PORT, () => {
+  console.log(`Connected at port ${PORT}`);
 });
 
