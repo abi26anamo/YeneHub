@@ -49,12 +49,12 @@ const Navbar = () => {
 
   const fullName = `${user.firstName} ${user.lastName}`;
 
-  const handleSearchInputChange = (event) => {
+  const handleInputChange = (event) => {
     const { value } = event.target;
     const [newFirstName, newLastName] = value.split(" ");
     setFirstName(newFirstName);
     setLastName(newLastName);
-    setSearchDisabled(value.trim() === "");
+    setSearchDisabled(value.trim() === '');
     if (value === "") {
       dispatch(setUsers({ users: [] }));
     }
@@ -71,15 +71,9 @@ const Navbar = () => {
     let response = await fetch(searchUrl, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
-    }); 
+    });
     let data = await response.json();
-    if (!Array.isArray(data)){
-      data =[];
-    }
-    dispatch(setUsers({users:data}))
-  
 
-    // If the data is empty and the last name is provided, perform another request with only the last name
     if (data.length === 0 && lastName !== "") {
       searchUrl = `${URL}/users/search?firstName=${lastName}&lastName=`;
       response = await fetch(searchUrl, {
@@ -87,11 +81,8 @@ const Navbar = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       data = await response.json();
-      if (!Array.isArray(data)) {
-        data = [];
-      }
     }
-    dispatch(setUsers({users:data}));
+    dispatch(setUsers({ users: data }));
   };
   if (users.length === 0){console.log('yup')}
 
@@ -122,7 +113,7 @@ const Navbar = () => {
             <form onSubmit={handleSearch}>
               <InputBase
                 placeholder="search"
-                onChange={handleSearchInputChange}
+                onChange={handleInputChange}
                 name="search"
               />
               <IconButton type="submit" onClick={handleSearch} disabled={searchDisabled}>

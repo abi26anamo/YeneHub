@@ -53,10 +53,10 @@ app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
-console.log(dotenv.config())
-const PORT = process.env.PORT;
+const PORT = process.env.PORT||3001;
+const MONGO_URL = "mongodb+srv://abinet:1234@cluster0.f16ksdi.mongodb.net/test?retryWrites=true&w=majority"
 
-mongoose.connect(process.env.MONGO_URL, {
+mongoose.connect(MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
