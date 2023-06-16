@@ -15,7 +15,7 @@ const App = ()=>{
     const isAuth = useSelector((state) => state.token);
 
     return <div className="app">
-        <BrowserRouter>
+        <BrowserRouter basename="/">
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
                 <Routes>
