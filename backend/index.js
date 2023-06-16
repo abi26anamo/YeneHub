@@ -20,9 +20,7 @@ import { verifyToken } from "./middleware/auth.js";
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-if (process.env.NODE_ENV !== 'production') {
   dotenv.config({path: __dirname+'/.env'});
-}
 
 
 
@@ -57,8 +55,10 @@ app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 const PORT = process.env.PORT || 3001;
+const MONGO_URL = "mongodb+srv://abinet:1234@cluster0.f16ksdi.mongodb.net/test?retryWrites=true&w=majority"
 
-mongoose.connect(process.env.MONGO_URL, {
+
+mongoose.connect(MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -74,9 +74,4 @@ app.listen(PORT, () => {
   console.log(`Connected at port ${PORT}`);
 });
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend', 'build')));
-  app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend', 'build', 'index.html'));
-  })
-}
+
