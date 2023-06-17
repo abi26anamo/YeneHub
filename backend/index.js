@@ -31,7 +31,7 @@ app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 /* Enable CORS */
 app.use(
   cors({
-    origin: "https://yene-hub-frontend.vercel.app/",
+    origin: "https://yene-hub.vercel.app",
     methods: ["POST", "GET", "PATCH", "DELETE"],
     credentials: true,
   })
