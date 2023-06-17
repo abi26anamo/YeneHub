@@ -83,7 +83,7 @@ const Form = () => {
   const login = async (values, onSubmitProps) => {
     const loggedInResponse = await fetch(`${URL}/auth/login`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json","Access-Control-Allow-Origin": "*"},
       body: JSON.stringify(values),
     });
     const loggedIn = await loggedInResponse.json();
