@@ -7,7 +7,7 @@ const initialState = {
     posts:[],
     searchResults: [],
     users : [],
-    URL:"http://localhost:3001"
+    URL:"https://yene-hub-server-api.vercel.app"
 };
 
 export const authSlice = createSlice({
