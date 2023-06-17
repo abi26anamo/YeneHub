@@ -56,6 +56,9 @@ app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 const PORT = process.env.PORT || 3001;
 
+app.get("/",(req,res)=>{
+  res.json("hello");
+})
 
 mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
