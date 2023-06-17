@@ -1,8 +1,7 @@
 # YeneHub
 
 Full Stack Social Media Website
-
-![abi_post](https://github.com/abi26anamo/YeneHub/assets/91598495/50da406c-8367-47f0-ab3e-778aa2083367)
+![yeneporfile](https://github.com/abi26anamo/YeneHub/assets/91598495/b9dcc81d-3dff-461a-aaeb-150121f2e841)
 ## Features
 - Email & Password Authentication
 - Persisting Auth State
