@@ -29,8 +29,14 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 /* Enable CORS */
-app.use(cors({
-  origin: '*'}));
+const corsOpts = {
+  origin: '*',
+  credentials: true,
+  methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
+  allowedHeaders: ['Content-Type'],
+  exposedHeaders: ['Content-Type']
+};
+app.use(cors(corsOpts));
 
 
 
